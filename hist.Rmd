@@ -1,0 +1,22 @@
+---
+title: "Untitled"
+output: html_document
+date: '2022-06-17'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+library(primer.data)
+library(tidyverse)
+```
+
+
+```{r histogram, echo=FALSE}
+nhanes |>
+    filter(age >= 18) |>
+    drop_na() |>
+    ggplot(mapping=aes(x=height))+
+        geom_histogram(binwidth = 10)+
+        facet_wrap(~gender)+
+        labs(title="Distribution of height of adults in the U.S.", subtitle="Height of women are more evenly distributed than men", x="Count", y="Height (cm)", caption="National Health and Nutrition Examination Survey")
+```
